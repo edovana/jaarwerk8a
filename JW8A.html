@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horizontaal Scrollbare Webpagina</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+        }
+        .scroll-container {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            width: 100vw;
+            height: 100vh;
+        }
+        .page {
+            min-width: 100vw;
+            height: 100vh;
+            display: flex;
+            scroll-snap-align: start;
+        }
+        .text-section {
+            flex: 2;
+            padding: 20px;
+            background-color: #f4f4f4;
+            overflow-y: auto;
+        }
+        .image-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #ddd;
+            padding: 20px;
+            text-align: center;
+        }
+        .image-wrapper {
+            position: relative;
+            margin-bottom: 10px;
+        }
+        .image-wrapper img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+        .magnify-icon {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: rgba(0,0,0,0.6);
+            color: white;
+            padding: 5px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .info {
+            margin-top: 10px;
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        ul {
+            margin-top: 15px;
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 5px;
+        }
+        .scroll-container::-webkit-scrollbar {
+            display: none;
+        }
+        /* Fullscreen overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0,0,0,0.85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            display: none;
+        }
+        .overlay img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+        }
+        .overlay-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+        @media (max-width: 768px) {
+    .page {
+        flex-direction: column;
+    }
+
+    .text-section, .image-section {
+        flex: none;
+        width: 100%;
+        height: auto;
+    }
+
+    .image-section {
+        padding: 10px;
+    }
+
+    .text-section {
+        padding: 15px;
+        font-size: 16px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+}
+    </style>
+</head>
+<body>
+    <div class="scroll-container">
+
+        <!-- Pagina 1 -->
+        <div class="page">
+            <div class="text-section">
+                <h1>Hoe werkt het World Wide Web?</h1>
+                <p>Het World Wide Web (WWW) is een netwerk van webpagina’s die met elkaar verbonden zijn. Het maakt gebruik van het internet om toegang te bieden tot allerlei informatie en diensten.</p>
+                <p>Het WWW werd uitgevonden door Tim Berners-Lee in 1989 en heeft sindsdien de manier waarop mensen communiceren, informatie delen en zakendoen compleet veranderd.</p>
+                <p>Websites worden gehost op servers die constant online zijn. Deze servers verwerken aanvragen en sturen webpagina’s naar de gebruikers die via een browser verbinding maken.</p>
+                <p>Browsers zoals Chrome, Firefox en Safari vertalen webpagina's die geschreven zijn in HTML, CSS, en JavaScript naar visuele weergaven die gebruikers kunnen bekijken en ermee kunnen interacten.</p>
+                <p>Elke website heeft een uniek webadres, een zogenaamde URL (Uniform Resource Locator), waarmee gebruikers toegang kunnen krijgen tot de betreffende website.</p>
+                <p>De communicatie tussen de browser en de server gebeurt via het HTTP- of HTTPS-protocol. HTTPS is de beveiligde versie van HTTP, die zorgt voor encryptie van gegevens om ze te beschermen tegen onbevoegde toegang.</p>
+                <p>Hyperlinks (meestal aangeduid als links) verbinden verschillende webpagina’s met elkaar, zodat gebruikers door de enorme hoeveelheid beschikbare informatie kunnen navigeren.</p>
+                <p>Het WWW maakt het delen van informatie wereldwijd mogelijk, van tekst en afbeeldingen tot video en interactieve toepassingen.</p>
+                <p>Het Domain Name System (DNS) vertaalt de domeinnamen van websites (zoals www.example.com) naar IP-adressen, die de fysieke locaties van de servers aangeven.</p>
+                <p>Webpagina’s kunnen statisch zijn (vaststaande inhoud) of dynamisch (inhoud die regelmatig verandert op basis van gebruikersinvoer of andere variabelen).</p>
+                <p>Moderne websites gebruiken vaak API’s (Application Programming Interfaces) om gegevens in real-time op te halen van andere servers, wat zorgt voor een interactieve gebruikerservaring.</p>
+                <p>Cloud computing heeft de manier waarop websites en gegevens worden opgeslagen en gedeeld veranderd, doordat servers in datacenters wereldwijd toegang bieden aan gebruikers.</p>
+                <p>Het World Wide Web speelt een belangrijke rol in communicatie, e-commerce, online onderwijs, entertainment, en nog veel meer.</p>
+                <p>De webstandaarden die het WWW mogelijk maken, worden beheerd door het World Wide Web Consortium (W3C), een internationale organisatie die richtlijnen en technologieën voor het web ontwikkelt.</p>
+                <p>Het WWW blijft zich ontwikkelen, met nieuwe technologieën zoals Web3 die decentralisatie en gebruikerscontrole over data mogelijk maken.</p>
+
+                <!-- Belangrijkste feiten -->
+                <h2>Belangrijkste feiten</h2>
+                <ul>
+                    <li>Het World Wide Web werd in 1989 uitgevonden door Tim Berners-Lee.</li>
+                    <li>De eerste website ooit ging online op 6 augustus 1991.</li>
+                    <li>HTML, CSS en JavaScript zijn de belangrijkste talen voor webontwikkeling.</li>
+                    <li>Het HTTP-protocol regelt de communicatie tussen browsers en servers.</li>
+                    <li>HTTPS biedt extra beveiliging door middel van encryptie.</li>
+                    <li>Websites worden gehost op servers over de hele wereld.</li>
+                    <li>DNS vertaalt domeinnamen naar IP-adressen.</li>
+                    <li>Er zijn miljarden websites op het internet.</li>
+                    <li>Webstandaarden worden beheerd door het W3C.</li>
+                    <li>Het WWW heeft de manier waarop we communiceren en informatie delen revolutionair veranderd.</li>
+                    <li>Web 3.0 brengt decentralisatie naar het internet, wat de controle teruggeeft aan de gebruikers.</li>
+                    <li>Cloud computing maakt websites wereldwijd toegankelijk door gegevens op servers over de hele wereld op te slaan.</li>
+                    <li>Modern webdesign maakt gebruik van responsieve technologieën die websites op verschillende apparaten goed laten weergeven.</li>
+                    <li>Webtechnologieën blijven zich snel ontwikkelen, zoals de opkomst van WebAssembly voor snellere webapplicaties.</li>
+                </ul>
+            </div>
+            <div class="image-section">
+                <div class="image-wrapper">
+                    <img src="Depositphotos_15938211_l-2015.webp" alt="Server WWW">
+                    <span class="magnify-icon" onclick="openOverlay(this)">🔍</span>
+                </div>
+                <div class="image-wrapper">
+                    <img src="What_is_Server_Security-Thumb.webp" alt="Datacenter WWW">
+                    <span class="magnify-icon" onclick="openOverlay(this)">🔍</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pagina 2 -->
+        <div class="page">
+            <div class="text-section">
+                <h1>Meer over Tim Berners-Lee</h1>
+                <p>Tim Berners-Lee is de uitvinder van het World Wide Web. Hij werd geboren op 8 juni 1955 in Londen, Verenigd Koninkrijk. Het idee voor het WWW ontstond toen hij werkte bij CERN, een Europees laboratorium voor deeltjesfysica, waar hij zijn concept in 1989 voorstelde.</p>
+                <p>In 1991 werd de eerste website online gezet, die de basis vormde voor de groei van het internet zoals we dat nu kennen. Berners-Lee ontwikkelde HTML (HyperText Markup Language), HTTP (HyperText Transfer Protocol) en de eerste webbrowser, die cruciaal waren voor de opkomst van het web.</p>
+                <p>Berners-Lee was een van de oprichters van het World Wide Web Consortium (W3C), dat sindsdien verantwoordelijk is voor het ontwikkelen van webstandaarden en het bevorderen van een open internet. Het W3C zorgt ervoor dat webtechnologieën compatibel blijven en de toegankelijkheid voor gebruikers wordt gewaarborgd.</p>
+                <p>In 2004 werd Berners-Lee geridderd door koningin Elizabeth II voor zijn bijdragen aan de wereld van technologie en wetenschap. In zijn werk pleit hij voor het behoud van een open en gedecentraliseerd internet, dat niet onder controle staat van enkele grote bedrijven of overheden.</p>
+                <p>Hij is ook betrokken bij Solid, een project dat gebruikers meer controle moet geven over hun persoonlijke gegevens, door middel van gedecentraliseerde opslag op het web. Dit project heeft als doel het privacy en de veiligheid van gebruikers te verbeteren, terwijl ze ook meer controle hebben over hun eigen data.</p>
+
+                <!-- Belangrijkste feiten -->
+                <h2>Belangrijkste feiten</h2>
+                <ul>
+                    <li>Tim Berners-Lee werd geboren op 8 juni 1955 in Londen, VK.</li>
+                    <li>Hij bedacht het World Wide Web in 1989 tijdens zijn werk bij CERN.</li>
+                    <li>Hij ontwikkelde HTML, HTTP en de eerste webbrowser.</li>
+                    <li>Hij richtte het World Wide Web Consortium (W3C) op om webstandaarden te ontwikkelen.</li>
+                    <li>Berners-Lee pleit voor een open, vrij en gedecentraliseerd internet.</li>
+                    <li>Hij werd in 2004 geridderd door koningin Elizabeth II voor zijn bijdrage aan de technologie.</li>
+                    <li>Berners-Lee werkt aan het Solid-project, dat gebruikers controle geeft over hun gegevens.</li>
+                    <li>Hij heeft gepromoot dat het internet een publieke goed is, toegankelijk voor iedereen.</li>
+                    <li>Het Web Consortium beheert standaarden die ervoor zorgen dat het internet toegankelijk is voor iedereen.</li>
+                    <li>Hij is een voorvechter van privacy en vrijheid op het internet.</li>
+                </ul>
+            </div>
+            <div class="image-section">
+                <div class="image-wrapper">
+                    <img src="image001.jpg" alt="Tim Berners-Lee">
+                    <span class="magnify-icon" onclick="openOverlay(this)">🔍</span>
+                </div>
+                <div class="info">
+                    <h2>Tim Berners-Lee</h2>
+                    <p><strong>Geboortedatum:</strong> 8 juni 1955</p>
+                    <p><strong>Geboorteplaats:</strong> Londen, Verenigd Koninkrijk</p>
+                    <p><strong>Bekend van:</strong> Uitvinding van het WWW</p>
+                    <p><strong>Werkzaam bij:</strong> MIT, W3C</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pagina 3 -->
+        <div class="page">
+            <div class="text-section">
+                <h1>Wat is CERN?</h1>
+                <p>CERN (European Organization for Nuclear Research) is een van de grootste en meest prestigieuze onderzoeksinstituten ter wereld, gevestigd in Genève, Zwitserland, dicht bij de Franse grens. Het werd in 1954 opgericht om fundamenteel onderzoek naar deeltjesfysica te bevorderen. Het is de thuisbasis van de Large Hadron Collider (LHC), de grootste en krachtigste deeltjesversneller ter wereld.</p>
+                <p>CERN is wereldwijd bekend door zijn baanbrekende experimenten, die de fundamentele bouwstenen van het universum onderzoeken. Het LHC versnelt deeltjes tot bijna de lichtsnelheid en laat ze botsen, wat onderzoekers in staat stelt om de interacties tussen deeltjes te bestuderen. Deze experimenten hebben onder andere geleid tot de ontdekking van het Higgs-deeltje, ook wel het "God-deeltje" genoemd, wat van groot belang is voor de theoretische fysica.</p>
+                <p>Naast fysisch onderzoek is CERN ook betrokken bij technologieontwikkeling. De uitvinding van het World Wide Web in 1989 door Tim Berners-Lee was bijvoorbeeld een van CERN's innovaties. Het CERN heeft sindsdien bijgedragen aan tal van wetenschappelijke doorbraken en is een bron van kennis voor wetenschappers wereldwijd.</p>
+
+                <!-- Belangrijkste feiten -->
+                <h2>Belangrijkste feiten over CERN</h2>
+                <ul>
+                    <li>Opgericht in 1954 en gevestigd in Genève, Zwitserland.</li>
+                    <li>Thuisbasis van de Large Hadron Collider (LHC), de grootste deeltjesversneller ter wereld.</li>
+                    <li>Het LHC versnelt deeltjes tot bijna de snelheid van het licht.</li>
+                    <li>In 2012 ontdekte CERN het Higgs-deeltje, een belangrijke ontdekking in de deeltjesfysica.</li>
+                    <li>Tim Berners-Lee, de uitvinder van het World Wide Web, ontwikkelde zijn idee voor het web bij CERN.</li>
+                    <li>CERN is betrokken bij onderzoek naar de fundamentele wetten van de natuur.</li>
+                    <li>Het instituut heeft meer dan 12.000 medewerkers uit 70 verschillende landen.</li>
+                    <li>CERN ontwikkelt nieuwe technologieën die ook buiten de deeltjesfysica toegepast worden, zoals medische technologie en informatietechnologie.</li>
+                </ul>
+            </div>
+            <div class="image-section">
+                <div class="image-wrapper">
+                    <img src="cernlhc.webp" alt="CERN LHC">
+                    <span class="magnify-icon" onclick="openOverlay(this)">🔍</span>
+                </div>
+                <div class="image-wrapper">
+                    <img src="LHC-s.jpg" alt="CERN LHC">
+                    <span class="magnify-icon" onclick="openOverlay(this)">🔍</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Overlay voor fullscreen weergave -->
+    <div class="overlay" id="imageOverlay">
+        <span class="overlay-close" onclick="closeOverlay()">&times;</span>
+        <img src="" alt="Vergrote afbeelding" id="overlayImage">
+    </div>
+
+    <script>
+        function openOverlay(icon) {
+            const imgSrc = icon.previousElementSibling.src;
+            document.getElementById('overlayImage').src = imgSrc;
+            document.getElementById('imageOverlay').style.display = 'flex';
+        }
+
+        function closeOverlay() {
+            document.getElementById('imageOverlay').style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>
